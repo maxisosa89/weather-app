@@ -1,7 +1,6 @@
-import logo from "./logo.svg";
 import GlobalContext from "./context/GlobalContext";
 import Home from "./pages/Home";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function App() {
   const [cards, setCards] = useState([
