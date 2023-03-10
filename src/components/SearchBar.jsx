@@ -134,7 +134,7 @@ function SearchBar() {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form onSubmit={handleFormSubmit} className="form-search-bar">
       <input
         className="search-bar-input"
         type="text"

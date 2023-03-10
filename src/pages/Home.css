@@ -6,7 +6,9 @@
 }
 
 .container-searchbar {
+    padding: 10px;
+    width: 100%;
+    max-width: 100%;
     display: flex;
     justify-content: center;
-    padding: 10px;
 }
