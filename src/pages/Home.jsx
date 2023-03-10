@@ -15,14 +15,22 @@ const Home = () => {
         <SearchBar />
       </div>
       <div className="container-card">
-        {cards?.map((e, i) => (
-          <div key={`${e.id}-${i}`} className="container-card">
-            <button className="btn-delete-card" id={e.id} onClick={deleteCard}>
-              X
-            </button>
-            <Card {...e} />
-          </div>
-        ))}
+        {cards.length ? (
+          cards?.map((e, i) => (
+            <div key={`${e.id}-${i}`} className="container-card">
+              <button
+                className="btn-delete-card"
+                id={e.id}
+                onClick={deleteCard}
+              >
+                X
+              </button>
+              <Card {...e} />
+            </div>
+          ))
+        ) : (
+          <h3>No haz seleccionado ninguna ciudad.</h3>
+        )}
       </div>
     </>
   );

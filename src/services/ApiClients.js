@@ -7,16 +7,23 @@ const api = axios.create({
 const { REACT_APP_API_KEY } = process.env;
 
 export const getDataFromCities = async (name) => {
-  const response = await api.get(
-    `/geo/1.0/direct?q=${name}&limit=5&appid=${REACT_APP_API_KEY}`
-  );
-  return response.data;
+  try {
+    const response = await api.get(
+      `/geo/1.0/direct?q=${name}&limit=5&appid=123` //${REACT_APP_API_KEY}
+    );
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const getDataFromWeather = async (lat, lon) => {
-  const response = await api.get(
-    `/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${REACT_APP_API_KEY}`
-  );
-
-  return response.data;
+  try {
+    const response = await api.get(
+      `/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=es&appid=${REACT_APP_API_KEY}`
+    );
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
 };

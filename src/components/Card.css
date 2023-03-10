@@ -2,33 +2,22 @@
   display: flex;
   flex-wrap: wrap;
   border: 1px solid #ccc;
-  /* borde de 1px sólido */
   border-radius: 10px;
-  /* borde redondeado */
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  /* sombra */
   background-color: #f7f7f7;
-  /* color de fondo */
   padding: 20px;
-  /* relleno interior */
   width: 300px;
   max-width: 100%;
 }
 
 .card-title {
   font-size: 48px;
-  /* Tamaño máximo de fuente en píxeles */
   width: 100%;
   max-width: 100%;
-  /* Evita que el título se desborde */
   white-space: nowrap;
-  /* Evita que el texto se ajuste automáticamente */
   overflow: hidden;
-  /* Oculta el texto que no cabe en la pantalla */
   text-overflow: ellipsis;
-  /* Agrega puntos suspensivos para indicar que el texto está truncado */
   font-size: calc(1rem + 1vw);
-  /* Tamaño de fuente escalable con la unidad vw */
   text-align: center;
 }
 

@@ -22,29 +22,37 @@ function SearchBar() {
   };
 
   const getCities = async () => {
-    const result = await getDataFromCities(searchTerm);
-    setResults(result);
-    result.length > 0
-      ? document
-          .getElementById("results-list-container")
-          .classList.add("active")
-      : document
-          .getElementById("results-list-container")
-          .classList.remove("active");
+    try {
+      const result = await getDataFromCities(searchTerm);
+      setResults(result);
+      result.length > 0
+        ? document
+            .getElementById("results-list-container")
+            .classList.add("active")
+        : document
+            .getElementById("results-list-container")
+            .classList.remove("active");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const getWeather = async (lat, lon) => {
-    const result = await getDataFromWeather(lat, lon);
-    const alreadyExists = cards.some((card) => {
-      return (
-        card.coord.lat === result.coord.lat &&
-        card.coord.lon === result.coord.lon
-      );
-    });
-    !alreadyExists && setCards([...cards, result]);
-    document
-      .getElementById("results-list-container")
-      .classList.remove("active");
+    try {
+      const result = await getDataFromWeather(lat, lon);
+      const alreadyExists = cards.some((card) => {
+        return (
+          card.coord.lat === result.coord.lat &&
+          card.coord.lon === result.coord.lon
+        );
+      });
+      !alreadyExists && setCards([...cards, result]);
+      document
+        .getElementById("results-list-container")
+        .classList.remove("active");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {

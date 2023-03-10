@@ -1,5 +1,5 @@
 import React from "react";
-import "./Card.css"; // importar archivo CSS para estilos personalizados
+import "./Card.css";
 
 const Card = (props) => {
   const date = new Date(
