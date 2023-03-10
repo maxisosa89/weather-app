@@ -1,8 +1,12 @@
-.container-card {
+.container-cards {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    padding-top: 48px;
+}
+
+.container-card {
     position: relative;
 }
 

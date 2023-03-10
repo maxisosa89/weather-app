@@ -5,7 +5,7 @@ import GlobalContext from "../context/GlobalContext";
 import "./Home.css";
 
 const Home = () => {
-  const { cards, setCards } = useContext(GlobalContext);
+  const { cards, setCards, loading } = useContext(GlobalContext);
   const deleteCard = (e) => {
     setCards(cards.filter((c) => c.id !== parseInt(e.target.id)));
   };
@@ -14,8 +14,10 @@ const Home = () => {
       <div className="container-searchbar">
         <SearchBar />
       </div>
-      <div className="container-card">
-        {cards.length ? (
+      <div className="container-cards">
+        {loading ? (
+          <span>Cargando...</span>
+        ) : cards.length ? (
           cards?.map((e, i) => (
             <div key={`${e.id}-${i}`} className="container-card">
               <button

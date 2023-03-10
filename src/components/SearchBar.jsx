@@ -82,7 +82,7 @@ function SearchBar() {
         className="results-list-container"
       >
         <ul>
-          {results.length > 0 ? (
+          {results?.length > 0 ? (
             results?.map((e, i) => (
               <li
                 key={`${e.name}-${e.country}-${e.lat}-${e.lon}-${i}`}
