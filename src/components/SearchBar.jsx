@@ -25,13 +25,7 @@ function SearchBar() {
     try {
       const result = await getDataFromCities(searchTerm);
       setResults(result);
-      result.length > 0
-        ? document
-            .getElementById("results-list-container")
-            .classList.add("active")
-        : document
-            .getElementById("results-list-container")
-            .classList.remove("active");
+      document.getElementById("results-list-container").classList.add("active");
     } catch (e) {
       console.log(e);
     }
@@ -88,15 +82,19 @@ function SearchBar() {
         className="results-list-container"
       >
         <ul>
-          {results?.map((e, i) => (
-            <li
-              key={`${e.name}-${e.country}-${e.lat}-${e.lon}-${i}`}
-              className="result-list-item"
-              onClick={() => getWeather(e.lat, e.lon)}
-            >
-              {e.name} - {e.country}
-            </li>
-          ))}
+          {results.length > 0 ? (
+            results?.map((e, i) => (
+              <li
+                key={`${e.name}-${e.country}-${e.lat}-${e.lon}-${i}`}
+                className="result-list-item"
+                onClick={() => getWeather(e.lat, e.lon)}
+              >
+                {e.name} - {e.country}
+              </li>
+            ))
+          ) : (
+            <li className="result-list-item">No se hallaron resultados.</li>
+          )}
         </ul>
       </div>
     </form>
