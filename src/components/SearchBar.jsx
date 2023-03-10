@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { getDataFromCities, getDataFromWeather } from "../services/ApiClients";
 import GlobalContext from "../context/GlobalContext";
 import "./SearchBar.css";
@@ -7,6 +7,7 @@ function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
   const { cards, setCards } = useContext(GlobalContext);
+  const divRef = useRef(null);
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -41,7 +42,24 @@ function SearchBar() {
       );
     });
     !alreadyExists && setCards([...cards, result]);
+    document
+      .getElementById("results-list-container")
+      .classList.remove("active");
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (divRef.current && !divRef.current.contains(event.target)) {
+        document
+          .getElementById("results-list-container")
+          .classList.remove("active");
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [divRef]);
 
   return (
     <form onSubmit={handleFormSubmit} className="form-search-bar">
@@ -56,7 +74,11 @@ function SearchBar() {
       <button className="search-bar-button" type="submit">
         Buscar
       </button>
-      <div id="results-list-container" className="results-list-container">
+      <div
+        id="results-list-container"
+        ref={divRef}
+        className="results-list-container"
+      >
         <ul>
           {results?.map((e, i) => (
             <li
