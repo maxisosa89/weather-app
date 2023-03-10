@@ -3,6 +3,7 @@
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    position: relative;
 }
 
 .container-searchbar {
@@ -11,4 +12,10 @@
     max-width: 100%;
     display: flex;
     justify-content: center;
+}
+
+.btn-delete-card {
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }

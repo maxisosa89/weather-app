@@ -23,7 +23,6 @@ function SearchBar() {
   const getCities = async () => {
     const result = await getDataFromCities(searchTerm);
     setResults(result);
-    console.log(result);
     result.length > 0
       ? document
           .getElementById("results-list-container")
@@ -35,7 +34,13 @@ function SearchBar() {
 
   const getWeather = async (lat, lon) => {
     const result = await getDataFromWeather(lat, lon);
-    setCards([...cards, result]);
+    const alreadyExists = cards.some((card) => {
+      return (
+        card.coord.lat === result.coord.lat &&
+        card.coord.lon === result.coord.lon
+      );
+    });
+    !alreadyExists && setCards([...cards, result]);
   };
 
   return (
