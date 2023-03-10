@@ -10,7 +10,9 @@ const Card = (props) => {
   );
   return (
     <div className="card-container">
-      <h1 className="card-title">{props.name}</h1>
+      <h1 className="card-title">
+        {props.name} - {props.sys.country}
+      </h1>
       <div className="card-content">
         <div className="card-date-container">
           <p className="card-date">

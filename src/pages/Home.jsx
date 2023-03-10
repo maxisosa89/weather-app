@@ -5,15 +5,15 @@ import GlobalContext from "../context/GlobalContext";
 import "./Home.css";
 
 const Home = () => {
-  const { cards, /* setCards */ } = useContext(GlobalContext);
+  const { cards /* setCards */ } = useContext(GlobalContext);
   return (
     <>
       <div className="container-searchbar">
         <SearchBar />
       </div>
       <div className="container-card">
-        {cards?.map((e) => (
-          <div key={e.id} className="container-card">
+        {cards?.map((e, i) => (
+          <div key={`${e.id}-${i}`} className="container-card">
             <Card {...e} />
           </div>
         ))}
