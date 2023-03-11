@@ -1,11 +1,13 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { getDataFromCities, getDataFromWeather } from "../services/ApiClients";
 import GlobalContext from "../context/GlobalContext";
+import Spinner from "./Spinner";
 import "./SearchBar.css";
 
 function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { cards, setCards } = useContext(GlobalContext);
   const divRef = useRef(null);
 
@@ -18,12 +20,14 @@ function SearchBar() {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
+    setLoading(true);
     if (searchTerm.trim() !== "") {
       getCities();
     } else {
       alert("Ingrese el nombre de una ciudad.");
     }
     setSearchTerm(searchTerm.trim());
+    setLoading(false);
   };
 
   const getCities = async () => {
@@ -91,7 +95,7 @@ function SearchBar() {
       />
 
       <button id="btn-search" className="search-bar-button" type="submit">
-        Buscar
+        {loading ? <Spinner /> : "Buscar"}
       </button>
       <div
         id="results-list-container"
