@@ -32,8 +32,9 @@ function App() {
         return { lat: card.coord.lat, lon: card.coord.lon };
       });
       localStorage.setItem("cities", JSON.stringify(cities));
-      setLoading(false);
+      loading && setLoading(false);
     }
+    // eslint-disable-next-line
   }, [cards]);
   return (
     <GlobalContext.Provider value={{ cards, setCards, loading }}>
