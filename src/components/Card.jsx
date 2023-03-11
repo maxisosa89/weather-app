@@ -9,7 +9,7 @@ const Card = (props) => {
       props.timezone * 1000
   );
   return (
-    <div className="card-container">
+    <div className={`card-container ${props.weather[0].icon.slice(-1)}`}>
       <h1 className="card-title">
         {props.name} - {props.sys.country}
       </h1>

@@ -15,6 +15,14 @@ p {
   max-width: 100%;
 }
 
+.card-container.d {
+  background-color: #87CEFA;
+}
+
+.card-container.n {
+  background-color: #333333;
+}
+
 .card-title {
   font-size: 48px;
   width: 100%;
