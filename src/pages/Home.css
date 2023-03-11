@@ -60,3 +60,11 @@
 .btn-delete-card:hover {
     background-color: #c82333;
 }
+
+.empty-msg {
+    font-size: 48px;
+    width: 100%;
+    max-width: 100%;
+    font-size: calc(1rem + 1vw);
+    text-align: center;
+}

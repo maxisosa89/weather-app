@@ -18,8 +18,11 @@ function ErrorModal({ errorMessage, onClose }) {
               &times;
             </span>
           </div>
-          <h1>Error</h1>
-          <p>{errorMessage}</p>
+          <h1 className="title-modal">Error</h1>
+          <hr />
+          <div className="error-container">
+            <p>{errorMessage}</p>
+          </div>
         </div>
       </div>
     )

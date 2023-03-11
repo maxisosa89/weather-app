@@ -43,7 +43,20 @@
     cursor: pointer;
 }
 
-h1,
-p {
+.title-modal {
     color: #ffffff;
+    font-size: 48px;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: calc(1rem + 1vw);
+    text-align: center;
+}
+
+.error-container {
+    height: 100px;
+    display: flex;
+    align-items: center;
 }

@@ -32,7 +32,7 @@ const Home = () => {
             </div>
           ))
         ) : (
-          <h3>No haz seleccionado ninguna ciudad.</h3>
+          <h3 className="empty-msg">No haz seleccionado ninguna ciudad.</h3>
         )}
       </div>
     </>

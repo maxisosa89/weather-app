@@ -125,7 +125,7 @@ function SearchBar() {
               </li>
             ))
           ) : (
-            <li className="result-list-item">No se hallaron resultados.</li>
+            <li className="result-list-item-empty">No se hallaron resultados.</li>
           )}
         </ul>
       </div>
