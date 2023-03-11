@@ -2,6 +2,8 @@ import GlobalContext from "./context/GlobalContext";
 import Home from "./pages/Home";
 import { useEffect, useState } from "react";
 import { getDataFromWeather } from "./services/ApiClients";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Details from "./pages/Details";
 
 function App() {
   const [cards, setCards] = useState();
@@ -37,9 +39,14 @@ function App() {
     // eslint-disable-next-line
   }, [cards]);
   return (
-    <GlobalContext.Provider value={{ cards, setCards, loading }}>
-      <Home />
-    </GlobalContext.Provider>
+    <BrowserRouter>
+      <GlobalContext.Provider value={{ cards, setCards, loading }}>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/details" element={<Details />} />
+        </Routes>
+      </GlobalContext.Provider>
+    </BrowserRouter>
   );
 }
 
