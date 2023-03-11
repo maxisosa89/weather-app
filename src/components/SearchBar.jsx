@@ -18,16 +18,29 @@ function SearchBar() {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    getCities();
+    if (searchTerm.trim() !== "") {
+      getCities();
+    } else {
+      alert("Ingrese el nombre de una ciudad.");
+    }
+    setSearchTerm(searchTerm.trim());
   };
 
   const getCities = async () => {
+    const btnSearch = document.getElementById("btn-search");
+    const resultsListContainer = document.getElementById(
+      "results-list-container"
+    );
+
+    btnSearch.disabled = true;
     try {
-      const result = await getDataFromCities(searchTerm);
+      const result = await getDataFromCities(searchTerm.trim());
       setResults(result);
-      document.getElementById("results-list-container").classList.add("active");
-    } catch (e) {
-      console.log(e);
+      resultsListContainer.classList.add("active");
+    } catch (error) {
+      alert("Hubo un error con el servidor. Intente nuevamente más tarde.");
+    } finally {
+      btnSearch.disabled = false;
     }
   };
 
@@ -40,12 +53,16 @@ function SearchBar() {
           card.coord.lon === result.coord.lon
         );
       });
-      !alreadyExists && setCards([...cards, result]);
+      if (!alreadyExists) {
+        setCards([...cards, result]);
+      } else {
+        alert("Esta ciudad ya se encuentra en el tablero.");
+      }
       document
         .getElementById("results-list-container")
         .classList.remove("active");
     } catch (e) {
-      console.log(e);
+      alert("Hubo un error con el servidor. Intente nuevamente más tarde.");
     }
   };
 
@@ -73,7 +90,7 @@ function SearchBar() {
         onChange={handleInputChange}
       />
 
-      <button className="search-bar-button" type="submit">
+      <button id="btn-search" className="search-bar-button" type="submit">
         Buscar
       </button>
       <div

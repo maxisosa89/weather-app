@@ -13,7 +13,7 @@ export const getDataFromCities = async (name) => {
     );
     return response.data;
   } catch (e) {
-    console.log(e);
+    throw new Error(e);
   }
 };
 
@@ -24,6 +24,6 @@ export const getDataFromWeather = async (lat, lon) => {
     );
     return response.data;
   } catch (e) {
-    console.log(e);
+    throw new Error(e);
   }
 };

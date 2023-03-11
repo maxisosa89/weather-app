@@ -21,7 +21,7 @@ function App() {
           setCards([]);
         }
       } catch (e) {
-        console.log(e);
+        alert("Hubo un error con el servidor. Intente nuevamente más tarde.");
       }
     };
     getLocalStorageCities();
