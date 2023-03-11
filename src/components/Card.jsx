@@ -17,10 +17,10 @@ const Card = (props) => {
       <div className="card-content">
         <div className="card-date-container">
           <p className="card-date">
-            {date.getDay().toString().padStart(2, "0")}/
-            {date.getMonth().toString().padStart(2, "0")}/{date.getFullYear()} -{" "}
-            {date.getHours().toString().padStart(2, "0")}:
-            {date.getMinutes().toString().padStart(2, "0")}
+            {date.getDate().toString().padStart(2, "0")}/
+            {`${(date.getMonth() + 1).toString().padStart(2, "0")}`}/
+            {date.getFullYear()} - {date.getHours().toString().padStart(2, "0")}
+            :{date.getMinutes().toString().padStart(2, "0")}
           </p>
         </div>
         <div className="card-temperature-container">
@@ -40,7 +40,8 @@ const Card = (props) => {
         </div>
       </div>
       <p className="card-temperature-range">
-        MIN: {props.main.temp_min.toFixed()}°C - MAX: {props.main.temp_max.toFixed()}°C
+        MIN: {props.main.temp_min.toFixed()}°C - MAX:{" "}
+        {props.main.temp_max.toFixed()}°C
       </p>
     </div>
   );
