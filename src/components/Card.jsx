@@ -8,10 +8,11 @@ const Card = (props) => {
     ).getTime() +
       props.timezone * 1000
   );
+  const dayOrNight = props.weather[0].icon.slice(-1);
   return (
-    <div className={`card-container ${props.weather[0].icon.slice(-1)}`}>
+    <div className={`card-container ${dayOrNight}`}>
       <h1 className="card-title">
-        {props.name} - {props.sys.country}
+        {props.name.toUpperCase()} - {props.sys.country.toUpperCase()}
       </h1>
       <div className="card-content">
         <div className="card-date-container">
@@ -33,13 +34,13 @@ const Card = (props) => {
               height="80px"
             />
             <p className="card-weather-description">
-              {props.weather[0].description}
+              {props.weather[0].description.toUpperCase()}
             </p>
           </div>
         </div>
       </div>
       <p className="card-temperature-range">
-        Min: {props.main.temp_min}°C - Max: {props.main.temp_max}°C
+        MIN: {props.main.temp_min.toFixed()}°C - MAX: {props.main.temp_max.toFixed()}°C
       </p>
     </div>
   );

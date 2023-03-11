@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Card from "../components/Card";
 import SearchBar from "../components/SearchBar";
+import Spinner from "../components/Spinner";
 import GlobalContext from "../context/GlobalContext";
 import "./Home.css";
 
@@ -16,7 +17,7 @@ const Home = () => {
       </div>
       <div className="container-cards">
         {loading ? (
-          <span>Cargando...</span>
+          <Spinner />
         ) : cards.length ? (
           cards?.map((e, i) => (
             <div key={`${e.id}-${i}`} className="container-card">
