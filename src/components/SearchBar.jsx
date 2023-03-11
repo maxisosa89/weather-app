@@ -2,12 +2,14 @@ import React, { useState, useContext, useRef, useEffect } from "react";
 import { getDataFromCities, getDataFromWeather } from "../services/ApiClients";
 import GlobalContext from "../context/GlobalContext";
 import Spinner from "./Spinner";
+import ErrorModal from "./ErrorModal";
 import "./SearchBar.css";
 
 function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState({ error: false, msg: "" });
   const { cards, setCards } = useContext(GlobalContext);
   const divRef = useRef(null);
 
@@ -24,7 +26,7 @@ function SearchBar() {
     if (searchTerm.trim() !== "") {
       getCities();
     } else {
-      alert("Ingrese el nombre de una ciudad.");
+      setError({ error: true, msg: "Ingrese el nombre de una ciudad." });
     }
     setSearchTerm(searchTerm.trim());
     setLoading(false);
@@ -42,7 +44,10 @@ function SearchBar() {
       setResults(result);
       resultsListContainer.classList.add("active");
     } catch (error) {
-      alert("Hubo un error con el servidor. Intente nuevamente más tarde.");
+      setError({
+        error: true,
+        msg: "Hubo un error con el servidor. Intente nuevamente más tarde.",
+      });
     } finally {
       btnSearch.disabled = false;
     }
@@ -60,13 +65,19 @@ function SearchBar() {
       if (!alreadyExists) {
         setCards([...cards, result]);
       } else {
-        alert("Esta ciudad ya se encuentra en el tablero.");
+        setError({
+          error: true,
+          msg: "Esta ciudad ya se encuentra en el tablero.",
+        });
       }
       document
         .getElementById("results-list-container")
         .classList.remove("active");
     } catch (e) {
-      alert("Hubo un error con el servidor. Intente nuevamente más tarde.");
+      setError({
+        error: true,
+        msg: "Hubo un error con el servidor. Intente nuevamente más tarde.",
+      });
     }
   };
 
@@ -118,6 +129,12 @@ function SearchBar() {
           )}
         </ul>
       </div>
+      {error.error && (
+        <ErrorModal
+          errorMessage={error.msg}
+          onClose={() => setError({ error: false, msg: "" })}
+        />
+      )}
     </form>
   );
 }
