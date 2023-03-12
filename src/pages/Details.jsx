@@ -74,7 +74,9 @@ const Details = () => {
         </Link>
       </div>
       {loading ? (
-        <Spinner />
+        <div style={{ marginTop: "20px" }}>
+          <Spinner />
+        </div>
       ) : (
         <div className="detail-map-container">
           <DetailsCard
