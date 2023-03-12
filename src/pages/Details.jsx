@@ -5,6 +5,7 @@ import Spinner from "../components/Spinner";
 import ErrorModal from "../components/ErrorModal";
 import "./Details.css";
 import DetailsCard from "../components/DetailsCard";
+import Map from "../components/Map";
 
 const Details = () => {
   const { id } = useParams();
@@ -68,16 +69,22 @@ const Details = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <DetailsCard
-          props={{
-            card,
-            date,
-            sunriseHour,
-            sunsetHour,
-            windDegrees,
-            dayOrNight,
-          }}
-        />
+        <div className="detail-map-container">
+          <DetailsCard
+            props={{
+              card,
+              date,
+              sunriseHour,
+              sunsetHour,
+              windDegrees,
+              dayOrNight,
+            }}
+          />
+          <Map
+            lat={parseFloat(card?.coord.lat)}
+            lng={parseFloat(card?.coord.lon)}
+          />
+        </div>
       )}
       {error.error && (
         <ErrorModal errorMessage={error.msg} onClose={() => onClose()} />

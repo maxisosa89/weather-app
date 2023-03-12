@@ -1,8 +1,25 @@
+.details-container {
+    background-color: #4169E1;
+    color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .details-container>div {
     margin-top: 15px;
     margin-bottom: 15px;
     width: 280px;
     max-width: 100%;
+}
+
+.details-container.d {
+    background-color: #4169E1;
+}
+
+.details-container.n {
+    background-color: #1F2833;
 }
 
 .details-title {
@@ -17,23 +34,6 @@
 .title-section {
     margin-bottom: 10px;
     text-decoration: underline;
-}
-
-.details-container {
-    background-color: #4169E1;
-    color: #ffffff;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.details-container.d {
-    background-color: #4169E1;
-}
-
-.details-container.n {
-    background-color: #1F2833;
 }
 
 .details-weather-status-item {
