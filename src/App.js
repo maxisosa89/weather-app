@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getDataFromWeather } from "./services/ApiClients";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Details from "./pages/Details";
-import NotFound from "./components/NotFound";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const [cards, setCards] = useState();
