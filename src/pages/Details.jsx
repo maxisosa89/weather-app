@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import GlobalContext from "../context/GlobalContext";
 import Spinner from "../components/Spinner";
 import ErrorModal from "../components/ErrorModal";
@@ -66,6 +66,13 @@ const Details = () => {
   }, [card]);
   return (
     <div className="global-details-container">
+      <div className="nav-details">
+        <Link to="/">
+          <button className="btn-back">
+            <span className="arrow-left"></span>
+          </button>
+        </Link>
+      </div>
       {loading ? (
         <Spinner />
       ) : (
