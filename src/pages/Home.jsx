@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import Card from "../components/Card";
 import SearchBar from "../components/SearchBar";
 import Spinner from "../components/Spinner";
@@ -28,7 +29,9 @@ const Home = () => {
               >
                 X
               </button>
-              <Card {...e} />
+              <Link to={`/details/${e.id}`} className="link-to-details">
+                <Card {...e} />
+              </Link>
             </div>
           ))
         ) : (

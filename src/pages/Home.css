@@ -25,6 +25,10 @@
     transition: opacity 0.3s ease-in-out;
 }
 
+.link-to-details {
+    text-decoration: none;
+}
+
 .container-searchbar {
     padding-top: 10px;
     padding-bottom: 10px;

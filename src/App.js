@@ -43,7 +43,7 @@ function App() {
       <GlobalContext.Provider value={{ cards, setCards, loading }}>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/details" element={<Details />} />
+          <Route path="/details/:id" element={<Details />} />
         </Routes>
       </GlobalContext.Provider>
     </BrowserRouter>
