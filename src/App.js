@@ -38,6 +38,10 @@ function App() {
       }
     };
     getLocalStorageCities();
+    const interval = setInterval(() => {
+      getLocalStorageCities();
+    }, 10 * 60 * 1000);
+    return () => clearInterval(interval);
   }, []);
   useEffect(() => {
     if (cards) {
