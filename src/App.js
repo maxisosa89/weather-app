@@ -20,7 +20,18 @@ function App() {
           const results = await Promise.all(cities);
           setCards(results);
         } else {
-          setCards([]);
+          localStorage.setItem(
+            "cities",
+            JSON.stringify([
+              { lat: -34.6076, lon: -58.4371 },
+              { lat: 19.4326, lon: -99.1332 },
+              { lat: 40.7127, lon: -74.006 },
+              { lat: 48.8534, lon: 2.3488 },
+              { lat: 35.6828, lon: 139.7595 },
+              { lat: 31.2323, lon: 121.4692 },
+            ])
+          );
+          getLocalStorageCities();
         }
       } catch (e) {
         alert("Hubo un error con el servidor. Intente nuevamente más tarde.");

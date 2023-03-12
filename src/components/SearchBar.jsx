@@ -55,6 +55,7 @@ function SearchBar() {
 
   const getWeather = async (lat, lon) => {
     try {
+      if (cards.length < 10){
       const result = await getDataFromWeather(lat, lon);
       const alreadyExists = cards.some((card) => {
         return (
@@ -73,6 +74,12 @@ function SearchBar() {
       document
         .getElementById("results-list-container")
         .classList.remove("active");
+      } else {
+        setError({
+          error: true,
+          msg: "Se admite un máximo de 10 ciudades. Elimine una para agregar otra.",
+        });
+      }
     } catch (e) {
       setError({
         error: true,
