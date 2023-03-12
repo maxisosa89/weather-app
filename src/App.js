@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getDataFromWeather } from "./services/ApiClients";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Details from "./pages/Details";
+import NotFound from "./components/NotFound";
 
 function App() {
   const [cards, setCards] = useState();
@@ -59,6 +60,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/details/:id" element={<Details />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </GlobalContext.Provider>
     </BrowserRouter>
