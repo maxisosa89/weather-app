@@ -1,22 +1,37 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import GlobalContext from "../context/GlobalContext";
 import Spinner from "../components/Spinner";
+import ErrorModal from "../components/ErrorModal";
 import "./Details.css";
 
 const Details = () => {
   const { id } = useParams();
   const { cards } = useContext(GlobalContext);
+  const navigate = useNavigate();
   const [card, setCard] = useState();
   const [date, setDate] = useState();
   const [sunriseHour, setSunriseHour] = useState();
   const [sunsetHour, setSunsetHour] = useState();
   const [windDegrees, setWindDegrees] = useState();
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState({ error: false, msg: "" });
+
+  const onClose = () => {
+    setError({ error: false, msg: "" });
+    navigate("/");
+  };
 
   useEffect(() => {
-    const filterCard = cards && cards.filter((c) => c.id === parseInt(id));
-    filterCard && setCard(filterCard[0]);
+    if (cards) {
+      const filterCard = cards && cards.filter((c) => c.id === parseInt(id));
+      filterCard.length
+        ? setCard(filterCard[0])
+        : setError({
+            error: true,
+            msg: "No se encontró la ciudad que buscas.",
+          });
+    }
   }, [cards, id]);
   useEffect(() => {
     if (card) {
@@ -43,7 +58,7 @@ const Details = () => {
       const index = Math.floor(((card.wind.deg + 22.5) % 360) / 45);
       setWindDegrees(degrees[index]);
       setLoading(false);
-    }    
+    }
   }, [card]);
   return (
     <div className="global-details-container">
@@ -158,6 +173,9 @@ const Details = () => {
             </p>
           </div>
         </div>
+      )}
+      {error.error && (
+        <ErrorModal errorMessage={error.msg} onClose={() => onClose()} />
       )}
     </div>
   );
